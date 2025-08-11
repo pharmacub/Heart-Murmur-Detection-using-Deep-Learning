@@ -20,9 +20,4 @@ We evaluated several architectures:
 - **ResNet-based models** (ResNet18 and ResNet34)
 - **Attention-based CNN classifier**
 
-## Feature Extraction
-- **Mel spectrograms** were extracted from PCG recordings.
-- Both **single-window** and **multi-window** spectrogram approaches were tested.
-- Normalization and augmentation were applied to improve generalization.
-
 
