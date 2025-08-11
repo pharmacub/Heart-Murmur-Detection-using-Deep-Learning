@@ -30,14 +30,14 @@ def convert_to_full_file_spectrograms(
 
             return save_path
         except Exception as e:
-            print(f"❌ Error processing {file_path}: {e}")
+            print(f" Error processing {file_path}: {e}")
             return None
 
     df["spectrogram_path"] = df["file_path"].apply(process_audio)
     df = df.dropna(subset=["spectrogram_path"])
     df.to_csv(output_csv, index=False)
 
-    print(f"✅ Full-length spectrograms saved to: {output_csv}")
+    print(f" Full-length spectrograms saved to: {output_csv}")
     return df
 
 
@@ -102,11 +102,11 @@ def convert_to_segment_level(
                 })
 
         except Exception as e:
-            print(f"❌ Error processing {file_path}: {e}")
+            print(f" Error processing {file_path}: {e}")
             continue
 
     segment_df = pd.DataFrame(segment_entries)
     segment_df.to_csv(output_csv, index=False)
 
-    print(f"✅ Segment-level spectrograms saved to: {output_csv}")
+    print(f" Segment-level spectrograms saved to: {output_csv}")
     return segment_df
