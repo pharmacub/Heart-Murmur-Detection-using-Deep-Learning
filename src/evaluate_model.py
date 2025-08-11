@@ -34,7 +34,7 @@ def _make_resnet(model_type: str, num_classes: int, in_channels: int = 1):
 
 def evaluate_on_test(model_path, test_csv, model_name, model_type="resnet18", batch_size=32, in_channels=1, num_classes=3):
     device = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"📡 Using device: {device}")
+    print(f" Using device: {device}")
 
     test_ds = MyHeartDataset(test_csv)
     test_loader = DataLoader(test_ds, batch_size=batch_size)
@@ -62,8 +62,8 @@ def evaluate_on_test(model_path, test_csv, model_name, model_type="resnet18", ba
     report = classification_report(all_labels, all_preds, target_names=["Absent", "Present", "Unknown"], digits=4)
     macro_f1 = f1_score(all_labels, all_preds, average="macro")
 
-    print("\n📊 Classification Report:\n" + report)
-    print(f"📉 Avg Test Loss: {avg_loss:.4f} | ⭐ Macro F1: {macro_f1:.4f}")
+    print("\n Classification Report:\n" + report)
+    print(f" Avg Test Loss: {avg_loss:.4f} |  Macro F1: {macro_f1:.4f}")
 
     # Save CSV row
     results_row = {
@@ -80,6 +80,6 @@ def evaluate_on_test(model_path, test_csv, model_name, model_type="resnet18", ba
     else:
         df = pd.DataFrame([results_row])
     df.to_csv(csv_path, index=False)
-    print(f"📁 Results → {csv_path}")
+    print(f" Results → {csv_path}")
 
     return all_preds, all_labels
