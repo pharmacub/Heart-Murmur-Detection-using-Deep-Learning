@@ -48,14 +48,14 @@ def split_segmented_data_by_subject(input_csv="../data/generated_data/multi_wind
                for label in summary.index}
         }
 
-    print("\n✅ Dataset split complete and saved:")
+    print("\n Dataset split complete and saved:")
     summaries = [summarize("Train", train_df),
                  summarize("Validation", val_df),
                  summarize("Test", test_df)]
 
     # Convert to table
     summary_df = pd.DataFrame(summaries)
-    print("\n📊 Final Segment-Level Split Summary:")
+    print("\n Final Segment-Level Split Summary:")
     print(summary_df.to_string(index=False))
 
     return train_df, val_df, test_df
@@ -105,13 +105,13 @@ def split_segmented_data_patient_dependent(
             **{f"{k}": f"{summary[k]} ({ratio[k]:.2%})" for k in summary.index}
         }
 
-    print("\n✅ Patient-dependent random split completed:")
+    print("\n Patient-dependent random split completed:")
     summary_df = pd.DataFrame([
         summarize("Train", train_df),
         summarize("Validation", val_df),
         summarize("Test", test_df)
     ])
-    print("\n📊 Segment-Level Split Summary:")
+    print("\n Segment-Level Split Summary:")
     print(summary_df.to_string(index=False))
 
     return train_df, val_df, test_df
@@ -164,7 +164,7 @@ def split_patient_location_dependent(
             **{label: f"{counts[label]} ({ratios[label]:.2%})" for label in counts.index}
         }
 
-    print("\n✅ Patient-location dependent random split completed:")
+    print("\n Patient-location dependent random split completed:")
     print(pd.DataFrame([summarize("Train", train_df),
                         summarize("Validation", val_df),
                         summarize("Test", test_df)]).to_string(index=False))
@@ -227,7 +227,7 @@ def split_segmented_data_like_article(input_csv="../data/generated_data/multi_wi
     ]
 
     summary_df = pd.DataFrame(summaries)
-    print("\n📊 Final Article-like Segment-Level Split Summary:")
+    print("\n Final Article-like Segment-Level Split Summary:")
     print(summary_df.to_string(index=False))
 
     return train_df, val_df, test_df
