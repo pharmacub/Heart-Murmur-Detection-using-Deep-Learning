@@ -39,8 +39,8 @@ def evaluate_attention_model(model_path, test_csv, model_name="resnet_attention"
     report = classification_report(all_labels, all_preds, target_names=["Absent", "Present", "Unknown"], digits=4)
     macro_f1 = f1_score(all_labels, all_preds, average="macro")
 
-    print("\n📊 Classification Report:\n" + report)
-    print(f"📉 Avg Test Loss: {avg_loss:.4f} | ⭐ Macro F1: {macro_f1:.4f}")
+    print("\n Classification Report:\n" + report)
+    print(f" Avg Test Loss: {avg_loss:.4f} |  Macro F1: {macro_f1:.4f}")
 
     results_row = {
         "model_name": model_name,
@@ -58,6 +58,6 @@ def evaluate_attention_model(model_path, test_csv, model_name="resnet_attention"
         df = pd.DataFrame([results_row])
 
     df.to_csv(csv_path, index=False)
-    print(f"📁 Results → {csv_path}")
+    print(f" Results → {csv_path}")
 
     return all_preds, all_labels
