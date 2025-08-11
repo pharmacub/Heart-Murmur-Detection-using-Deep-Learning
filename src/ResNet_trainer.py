@@ -62,7 +62,7 @@ def train_resnet_model(
     train_loader, val_loader = get_loaders(train_csv, val_csv, batch_size=batch_size)
 
     device = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"📡 Using device: {device}")
+    print(f" Using device: {device}")
 
     model = _make_resnet(model_type, num_classes=num_classes, in_channels=in_channels, pretrained=pretrained).to(device)
     criterion = nn.CrossEntropyLoss()
@@ -75,7 +75,7 @@ def train_resnet_model(
     for epoch in range(epochs):
         model.train()
         total_loss = 0.0
-        print(f"\n🔁 Epoch {epoch + 1}/{epochs}")
+        print(f"\n Epoch {epoch + 1}/{epochs}")
         for X, y in tqdm(train_loader, desc="Training", leave=False):
             X, y = X.to(device), y.to(device)
             optimizer.zero_grad()
@@ -88,17 +88,17 @@ def train_resnet_model(
         avg_train_loss = total_loss / max(1, len(train_loader))
         val_loss, val_acc = _evaluate(model, val_loader, device)
         scheduler.step(val_loss)
-        print(f"✅ Epoch {epoch+1}: train_loss={avg_train_loss:.4f} | val_loss={val_loss:.4f} | val_acc={val_acc:.4f}")
+        print(f" Epoch {epoch+1}: train_loss={avg_train_loss:.4f} | val_loss={val_loss:.4f} | val_acc={val_acc:.4f}")
 
         # Save checkpoint for this epoch
         epoch_path = model_path.replace(".pth", f"_epoch{epoch+1}.pth")
         torch.save(model.state_dict(), epoch_path)
-        print(f"💾 Saved epoch model to: {epoch_path}")
+        print(f" Saved epoch model to: {epoch_path}")
 
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             torch.save(model.state_dict(), model_path)
-            print(f"🌟 New best (acc={best_val_acc:.4f}) → {model_path}")
+            print(f" New best (acc={best_val_acc:.4f}) → {model_path}")
 
-    print(f"🏁 Training done. Best val acc: {best_val_acc:.4f}")
+    print(f" Training done. Best val acc: {best_val_acc:.4f}")
     return model
