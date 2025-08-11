@@ -17,7 +17,7 @@ Multi-location recordings were segmented, preprocessed, and converted into spect
 ## Models
 We evaluated several architectures:
 - **CNN-based classifier**
-- **ResNet-based models** (ResNet18 and ResNet34, adapted for 1-channel or 3-channel spectrograms)
+- **ResNet-based models** (ResNet18 and ResNet34)
 - **Attention-based CNN classifier**
 
 ## Feature Extraction
