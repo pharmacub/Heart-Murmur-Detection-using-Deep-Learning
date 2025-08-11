@@ -52,16 +52,7 @@ elif MODEL == "attention":
         batch_size=BATCH_SIZE,
         epochs=EPOCHS,
     )
-elif MODEL == "lstm":
-    model_dir = f"../models/lstm_{SPLIT}"
-    os.makedirs(model_dir, exist_ok=True)
-    train_lstm_model(
-        train_csv=train_csv,
-        val_csv=val_csv,
-        model_dir=model_dir,
-        batch_size=BATCH_SIZE,
-        epochs=EPOCHS,
-    )
+
 else:
     raise ValueError("Unknown MODEL")
 
@@ -83,11 +74,4 @@ elif MODEL == "attention":
         model_path=f"../models/resnet34_attention_{SPLIT}.pth",
         test_csv=test_csv,
         model_name=f"resnet34_attention_{SPLIT}",
-    )
-elif MODEL == "lstm":
-    evaluate_lstm_model(
-        model_path=f"../models/lstm_{SPLIT}/lstm_epoch{EPOCHS}.pth",
-        test_csv=test_csv,
-        model_name=f"lstm_{SPLIT}_epoch{EPOCHS}",
-        batch_size=BATCH_SIZE,
     )
