@@ -61,5 +61,5 @@ def load_patient_dataset(dataset_path="../data", output_path="../data/generated_
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     full_df.to_csv(output_path, index=False)
 
-    print("✅ Patient dataset loaded and saved!")
+    print(" Patient dataset loaded and saved!")
     return full_df
